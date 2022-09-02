@@ -1,0 +1,30 @@
+{
+  "name": "playwright-playground",
+  "version": "0.1.0",
+  "description": "Playwright playground with some useful code examples",
+  "engines": {
+    "node": ">=14.17.x"
+  },
+  "scripts": {
+    "test:e2e:chromium": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project=Chromium",
+    "test:e2e:firefox": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project=Firefox",
+    "test:e2e:webkit": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project=Webkit",
+    "test:api:chromium": "node ./node_modules/.bin/playwright test --config=api.config.js --project=Chromium",
+    "test:visual:chromium": "node ./node_modules/.bin/playwright test --config=visual.config.js --project=Chromium",
+    "test:visual:chromium:update": "node ./node_modules/.bin/playwright test --config=visual.config.js --project=Chromium --update-snapshots"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Marketionist/playwright-playground"
+  },
+  "keywords": [
+    "playwright",
+    "playwright examples",
+    "playwright test examples"
+  ],
+  "author": "Dmytro Shpakovskyi",
+  "license": "MIT",
+  "dependencies": {
+    "@playwright/test": "^1.25.1"
+  }
+}
