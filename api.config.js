@@ -25,12 +25,12 @@ const config = {
         },
         {
             name: 'Smoke',
-            testMatch: /.*smoke.spec.ts/,
+            testMatch: /.*smoke.spec.js/,
             retries: 0,
         },
         {
             name: 'Long',
-            testIgnore: /.*smoke.spec.ts/,
+            testIgnore: /.*long.spec.js/,
             retries: 1,
         },
     ],
