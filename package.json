@@ -6,6 +6,7 @@
     "node": ">=14.17.x"
   },
   "scripts": {
+    "install:test-dependencies": "npm install && npx playwright install",
     "test:e2e:chromium": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project=Chromium",
     "test:e2e:firefox": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project=Firefox",
     "test:e2e:webkit": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project=Webkit",
