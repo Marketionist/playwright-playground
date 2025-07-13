@@ -6,13 +6,16 @@
     "node": ">=14.17.x"
   },
   "scripts": {
+    "install:test-dependencies-old": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true npm install && npx playwright install firefox",
     "install:test-dependencies": "npm install && npx playwright install",
     "test:e2e:chromium": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project=Chromium",
+    "test:e2e:chrome": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project='Google Chrome'",
     "test:e2e:firefox": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project=Firefox",
     "test:e2e:webkit": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project=Webkit",
-    "test:api:chromium": "node ./node_modules/.bin/playwright test --config=api.config.js --project=Chromium",
-    "test:visual:chromium": "node ./node_modules/.bin/playwright test --config=visual.config.js --project=Chromium",
-    "test:visual:chromium:update": "node ./node_modules/.bin/playwright test --config=visual.config.js --project=Chromium --update-snapshots"
+    "test:api:firefox": "node ./node_modules/.bin/playwright test --config=api.config.js --project=Firefox",
+    "test:visual:firefox": "node ./node_modules/.bin/playwright test --config=visual.config.js --project=Firefox",
+    "test:visual:firefox:update": "node ./node_modules/.bin/playwright test --config=visual.config.js --project=Firefox --update-snapshots",
+    "test:e2e:para-bank": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project='Para Bank'"
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,6 @@
   "author": "Dmytro Shpakovskyi",
   "license": "MIT",
   "dependencies": {
-    "@playwright/test": "^1.25.1"
+    "@playwright/test": "^1.54.1"
   }
 }
