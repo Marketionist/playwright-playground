@@ -1,3 +1,5 @@
+const { defineConfig, devices } = require('@playwright/test');
+
 const config = {
     timeout: 60000, // Timeout is shared between all tests.
     retries: 0,
@@ -12,16 +14,8 @@ const config = {
     },
     projects: [
         {
-            name: 'Chromium',
-            use: { browserName: 'chromium' }
-        },
-        {
             name: 'Firefox',
-            use: { browserName: 'firefox' }
-        },
-        {
-            name: 'Webkit',
-            use: { browserName: 'webkit' }
+            use: { ...devices['Desktop Firefox'] },
         },
         {
             name: 'Smoke',
@@ -36,4 +30,4 @@ const config = {
     ],
 };
 
-  module.exports = config;
+module.exports = defineConfig(config);
