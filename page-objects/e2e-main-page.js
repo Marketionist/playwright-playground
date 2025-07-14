@@ -17,7 +17,7 @@ let mainPage = {
         let credentials = {};
         
         credentials.credentials = JSON.parse(storageData.cookies.find((cookie) => {
-            return cookie.name === 'credentials_zero_bank';
+            return cookie.name === 'credentials_para_bank';
         }).value);
         credentials.sessionId = storageData.cookies.find((cookie) => {
             return cookie.name === 'JSESSIONID';
