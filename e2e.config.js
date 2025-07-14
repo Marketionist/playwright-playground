@@ -28,7 +28,7 @@ const config = {
             testDir: 'tests/e2e',
             testMatch: /setup\.js/,
             use: {
-                storageState: 'playwright/.auth/admin.json',
+                storageState: 'playwright/.auth/user.json',
             },
             dependencies: ['Log in',],
             retries: 0,
@@ -38,7 +38,7 @@ const config = {
             testDir: 'tests/e2e',
             testMatch: /.*(?<!fast|long)-e2e-spec\.js/,
             use: {
-                storageState: 'playwright/.auth/admin.json',
+                storageState: 'playwright/.auth/user.json',
                 // // An object containing additional HTTP headers to be sent with every request
                 // extraHTTPHeaders: {
                 //     'X-My-Header': 'value',
