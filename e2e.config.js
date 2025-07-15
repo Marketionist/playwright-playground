@@ -1,11 +1,12 @@
 const { defineConfig, devices } = require('@playwright/test');
 
 const config = {
-    timeout: 60000, // Timeout is shared between all tests
+    /* Timeout is shared between all tests */
+    timeout: 60000,
     retries: 0,
     testDir: 'tests/e2e',
-    testMatch: /.*(?<!fast)-e2e-spec\.js/,
-    // Use list and dot reporters while running on CI and only list locally
+    testMatch: /.*(?<!fast|long)-e2e-spec\.js/,
+    /* Use list and dot reporters while running on CI and only list locally */
     reporter: process.env.CI ? [['list',], ['dot',],] : 'list',
     use: {
         ...devices['Desktop Firefox'],
@@ -19,14 +20,14 @@ const config = {
     projects: [
         {
             name: 'Log in',
-            testDir: 'tests/utils',
+            testDir: 'tests/e2e',
             testMatch: /global-setup\.js/,
             retries: 0,
         },
         {
             name: 'Setup test data',
             testDir: 'tests/e2e',
-            testMatch: /setup\.js/,
+            testMatch: /.*(?<!global-)setup\.js/,
             use: {
                 storageState: 'playwright/.auth/user.json',
             },
@@ -39,7 +40,7 @@ const config = {
             testMatch: /.*(?<!fast|long)-e2e-spec\.js/,
             use: {
                 storageState: 'playwright/.auth/user.json',
-                // // An object containing additional HTTP headers to be sent with every request
+                /* An object containing additional HTTP headers to be sent with every request */
                 // extraHTTPHeaders: {
                 //     'X-My-Header': 'value',
                 // },
@@ -60,7 +61,7 @@ const config = {
             name: 'Webkit',
             use: { ...devices['Desktop Safari'] },
         },
-        /* Test against mobile viewports. */
+        /* Test against mobile viewports */
         {
             name: 'Mobile Chrome',
             use: { ...devices['Pixel 5'] },
@@ -69,7 +70,7 @@ const config = {
             name: 'Mobile Safari',
             use: { ...devices['iPhone 12'] },
         },
-        /* Test against branded browsers. */
+        /* Test against branded browsers */
         {
             name: 'Google Chrome',
             use: { ...devices['Desktop Chrome'], channel: 'chrome' }, // or 'chrome-beta'
@@ -78,15 +79,16 @@ const config = {
             name: 'Microsoft Edge',
             use: { ...devices['Desktop Edge'], channel: 'msedge' }, // or 'msedge-dev'
         },
+        /* Test suites */
         {
-            name: 'Smoke',
-            testMatch: /.*smoke.spec.js/,
-            retries: 0,
+            name: 'Fast',
+            testMatch: /.*fast-e2e-spec.js/,
+            retries: 1,
         },
         {
             name: 'Long',
-            testIgnore: /.*long.spec.js/,
-            retries: 1,
+            testIgnore: /.*long-e2e-spec.js/,
+            retries: 2,
         },
     ],
 };
