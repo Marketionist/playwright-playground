@@ -12,10 +12,10 @@
     "test:e2e:chrome": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project='Google Chrome'",
     "test:e2e:firefox": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project=Firefox",
     "test:e2e:webkit": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project=Webkit",
-    "test:api:firefox": "node ./node_modules/.bin/playwright test --config=api.config.js --project=Firefox",
-    "test:visual:firefox": "node ./node_modules/.bin/playwright test --config=visual.config.js --project=Firefox",
-    "test:visual:firefox:update": "node ./node_modules/.bin/playwright test --config=visual.config.js --project=Firefox --update-snapshots",
-    "test:e2e:para-bank": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project='Para Bank'"
+    "test:api:reqres": "node ./node_modules/.bin/playwright test --config=api.config.js --project='ReqRes'",
+    "test:e2e:para-bank": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project='Para Bank'",
+    "test:visual:playwright": "node ./node_modules/.bin/playwright test --config=visual.config.js --project='Playwright'",
+    "test:visual:playwright:update": "node ./node_modules/.bin/playwright test --config=visual.config.js --project='Playwright' --update-snapshots"
   },
   "repository": {
     "type": "git",
