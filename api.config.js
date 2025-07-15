@@ -1,10 +1,15 @@
 const { defineConfig, devices } = require('@playwright/test');
 
 const config = {
-    timeout: 60000, // Timeout is shared between all tests.
+    /* Timeout is shared between all tests */
+    timeout: 60000,
     retries: 0,
     testDir: 'tests/api',
+    testMatch: /.*(?<!fast|long)-api-spec\.js/,
+    /* Use list and dot reporters while running on CI and only list locally */
+    reporter: process.env.CI ? [['list',], ['dot',],] : 'list',
     use: {
+        ...devices['Desktop Firefox'],
         headless: true,
         viewport: { width: 1280, height: 720 },
         actionTimeout: 20000,
@@ -14,18 +19,20 @@ const config = {
     },
     projects: [
         {
-            name: 'Firefox',
-            use: { ...devices['Desktop Firefox'] },
-        },
-        {
-            name: 'Smoke',
-            testMatch: /.*smoke.spec.js/,
+            name: 'ReqRes',
+            testMatch: /.*(?<!fast|long)-api-spec\.js/,
             retries: 0,
+        },
+        /* Test suites */
+        {
+            name: 'Fast',
+            testMatch: /.*fast-api-spec.js/,
+            retries: 1,
         },
         {
             name: 'Long',
-            testIgnore: /.*long.spec.js/,
-            retries: 1,
+            testIgnore: /.*long-api-spec.js/,
+            retries: 2,
         },
     ],
 };
