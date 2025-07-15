@@ -1,8 +1,8 @@
 # playwright-playground
 Playwright playground with some useful code examples:
-- [API tests](https://github.com/Marketionist/playwright-playground/blob/main/tests/api/api.spec.js)
-- [End-to-end (e2e) tests](https://github.com/Marketionist/playwright-playground/blob/main/tests/e2e/e2e.spec.js)
-- [Visual regression tests](https://github.com/Marketionist/playwright-playground/blob/main/tests/visual/visual.spec.js)
+- [API tests](https://github.com/Marketionist/playwright-playground/blob/main/tests/api/reqres-api-spec.js)
+- [End-to-end (e2e) tests](https://github.com/Marketionist/playwright-playground/blob/main/tests/e2e/account-overview-e2e-spec.js)
+- [Visual regression tests](https://github.com/Marketionist/playwright-playground/blob/main/tests/visual/playwright-visual-spec.js)
 
 ## Supported versions
 <a href="https://nodejs.org/en/" rel="nofollow" target="_blank">Node.js</a> >= 14.17.x,
@@ -18,29 +18,33 @@ git clone git@github.com:Marketionist/playwright-playground.git && cd playwright
 ```bash
 npm run install:test-dependencies
 ```
+OR if you have an older OS:
+```bash
+npm run install:test-dependencies-old
+```
 
 ## Running tests
 - To launch API tests run:
     ```bash
-    npm run test:api:chromium
+    npm run test:api:reqres
     ```
 
 - To launch end-to-end tests run:
     ```bash
-    npm run test:e2e:chromium
+    npm run test:e2e:para-bank
     ```
 
-    > Note: you can also run tests with Firefox: `npm run test:e2e:firefox`
-    > or Safari: `npm run test:e2e:webkit`
+    > Note: you can run tests with Firefox: `npm run test:e2e:firefox`,
+    > Chrome `npm run test:e2e:chrome` or Safari: `npm run test:e2e:webkit`
 
 - To launch visual regression tests run:
     ```bash
-    npm run test:visual:chromium
+    npm run test:visual:playwright
     ```
 
     > Note: you can update baseline images by running:
-    > `npm run test:visual:chromium:update`
+    > `npm run test:visual:playwright:update`
 
 ## Thanks
-If this code examples were helpful to you - please give this repo a **★ Star** on
-[GitHub](https://github.com/Marketionist/playwright-playground).
+If this code examples were helpful to you - please give this repo a **★ Star**
+on [GitHub](https://github.com/Marketionist/playwright-playground).
