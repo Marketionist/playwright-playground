@@ -1,23 +1,44 @@
 const { test, expect } = require('@playwright/test');
 
-test.describe.parallel('API test examples', () => {
+test.describe.parallel('ReqRes API', () => {
     const baseUrl = 'https://reqres.in/api';
 
-    test('GET /users/{id} - assert valid endpoint response', async ({ request }) => {
-        const response = await request.get(`${baseUrl}/users/4`);
+    test('GET /users/{id} - assert valid endpoint response.', async ({ request }) => {
+        const response = await request.get(
+            `${baseUrl}/users/4`,
+            {
+                headers: {
+                    'x-api-key': 'reqres-free-v1'
+                }
+            }
+        );
         const responseBody = JSON.parse(await response.text());
 
         expect(response.status()).toBe(200);
     });
 
-    test('GET /users/some-wrong-url - assert invalid endpoint response', async ({ request }) => {
-        const response = await request.get(`${baseUrl}/users/some-wrong-url`);
+    test('GET /users/some-wrong-url - assert invalid endpoint response.', async ({ request }) => {
+        const response = await request.get(
+            `${baseUrl}/users/some-wrong-url`,
+            {
+                headers: {
+                    'x-api-key': 'reqres-free-v1'
+                }
+            }
+        );
 
         expect(response.status()).toBe(404);
     });
 
-    test('GET /users/{id} - assert user email', async ({ request }) => {
-        const response = await request.get(`${baseUrl}/users/4`);
+    test('GET /users/{id} - assert user email.', async ({ request }) => {
+        const response = await request.get(
+            `${baseUrl}/users/4`,
+            {
+                headers: {
+                    'x-api-key': 'reqres-free-v1'
+                }
+            }
+        );
         const responseBody = JSON.parse(await response.text());
 
         expect(response.status()).toBe(200);
@@ -26,8 +47,11 @@ test.describe.parallel('API test examples', () => {
         expect(responseBody.data.first_name).toBeTruthy();
     });
 
-    test('POST /user - create new user', async ({ request }) => {
+    test('POST /user - create new user.', async ({ request }) => {
         const response = await request.post(`${baseUrl}/user`, {
+            headers: {
+                'x-api-key': 'reqres-free-v1'
+            },
             data: {
                 id: 999
             }
@@ -39,8 +63,11 @@ test.describe.parallel('API test examples', () => {
         expect(responseBody.createdAt).toBeTruthy();
     });
 
-    test('POST /login - log in with correct credentials', async ({ request }) => {
+    test('POST /login - log in with correct credentials.', async ({ request }) => {
         const response = await request.post(`${baseUrl}/login`, {
+            headers: {
+                'x-api-key': 'reqres-free-v1'
+            },
             data: {
                 'email': 'eve.holt@reqres.in',
                 'password': 'cityslicka'
@@ -52,8 +79,11 @@ test.describe.parallel('API test examples', () => {
         expect(responseBody.token).toBeTruthy();
     });
 
-    test('POST /login - log in with incorrect credentials', async ({ request }) => {
+    test('POST /login - log in with incorrect credentials.', async ({ request }) => {
         const response = await request.post(`${baseUrl}/login`, {
+            headers: {
+                'x-api-key': 'reqres-free-v1'
+            },
             data: {
                 'email': 'eve.holt@reqres.in'
             }
@@ -64,10 +94,13 @@ test.describe.parallel('API test examples', () => {
         expect(responseBody.error).toBe('Missing password');
     });
 
-    test('PUT /users/{id} - update user', async ({ request }) => {
+    test('PUT /users/{id} - update user.', async ({ request }) => {
         const newName = 'updated name';
         const newJob = 'updated job';
         const response = await request.put(`${baseUrl}/users/2`, {
+            headers: {
+                'x-api-key': 'reqres-free-v1'
+            },
             data: {
                 'name': newName,
                 'job': newJob
@@ -81,8 +114,15 @@ test.describe.parallel('API test examples', () => {
         expect(responseBody.updatedAt).toBeTruthy();
     });
 
-    test('DELETE /users/{id} - update user', async ({ request }) => {
-        const response = await request.delete(`${baseUrl}/users/2`);
+    test('DELETE /users/{id} - update user.', async ({ request }) => {
+        const response = await request.delete(
+            `${baseUrl}/users/2`,
+            {
+                headers: {
+                    'x-api-key': 'reqres-free-v1'
+                }
+            }
+        );
 
         expect(response.status()).toBe(204);
     });
