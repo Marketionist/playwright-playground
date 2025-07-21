@@ -1,4 +1,4 @@
-const authFilePath = 'playwright/.auth/user.json';
+const authFilePath = '.auth/user.json';
 
 async function logIn (context, url, parametersObject) {
     const logInResponse = await context.request.post(
@@ -34,7 +34,7 @@ async function logIn (context, url, parametersObject) {
 async function getCredentialsFromCookies (context) {
     const storageData = await context.storageState();
     let credentials = {};
-    
+
     credentials.credentials = JSON.parse(storageData.cookies.find((cookie) => {
         return cookie.name === 'ta_credentials';
     }).value);
