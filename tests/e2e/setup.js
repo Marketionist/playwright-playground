@@ -1,12 +1,12 @@
 const { test, expect } = require('@playwright/test');
 const mainPage = require('../../page-objects/e2e-main-page.js');
+const { getCredentialsFromCookies } = require('../../utils/log-in.js');
 
 test.describe('Setup Para Bank test data', () => {
     let credentials;
 
     test.beforeEach(async ({ context, }) => {
-        credentials = await mainPage.getCredentialsFromCookies(context);
-        // await page.goto('http://zero.webappsecurity.com/');
+        credentials = await getCredentialsFromCookies(context);
     });
 
     test('POST /user - create new user.', async ({ context }) => {
