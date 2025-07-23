@@ -31,8 +31,11 @@ npm run install:test-dependencies-old
 
 - To launch end-to-end tests run:
     ```bash
-    npm run test:e2e:para-bank
+    LOGIN='Leeroy' PASSWORD='Jenkins' npm run test:e2e:para-bank
     ```
+
+    > Note: temporary test users are wiped out from the Para Bank website on a
+    > regular basis
 
     > Note: you can run tests with Firefox: `npm run test:e2e:firefox`,
     > Chrome `npm run test:e2e:chrome` or Safari: `npm run test:e2e:webkit`
