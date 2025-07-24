@@ -10,7 +10,7 @@ test.describe.parallel.only('Transfer Funds', () => {
         await page.goto(`${mainPage.baseUrl}/transfer.htm`);
     });
 
-    test('Verify money transfer', async ({ page }) => {
+    test('Verify money transfer.', async ({ page }) => {
         await page.locator(mainPage.inputAmount).fill('100');
         await page.locator(mainPage.buttonTransfer).click();
 

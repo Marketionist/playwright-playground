@@ -4,9 +4,12 @@ let mainPage = {
     login: process.env.LOGIN,
     password: process.env.PASSWORD,
     baseUrl: 'https://parabank.parasoft.com/parabank',
+    // Accounts Overview
     tableAccountsOverview: '#accountTable',
-    // Update this placeholder selector to whatever you need
-    inputTest: '#test',
+    // Transfer Funds
+    inputAmount: '#amount',
+    buttonTransfer: '.button[value="Transfer"]',
+    titleResult: '#showResult .title',
     // Update this placeholder internal function to whatever you need
     _createTestElementSelector: function (text) {
         return '//*[ancestor::*[contains(@class, "test-class")] and ' +
