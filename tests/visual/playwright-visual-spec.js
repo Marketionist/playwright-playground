@@ -1,9 +1,9 @@
 const { test, expect } = require('@playwright/test');
 // With Page Object
-const { MainPage } = require('../../page-objects/main-page.js');
+const { MainPage } = require('../../page-objects/visual-main-page.js');
 
-test.describe('Visual regression test examples', () => {
-    test('Full page snapshot', async ({ page }) => {
+test.describe('Playwright visual regression', () => {
+    test('Full page snapshot.', async ({ page }) => {
         await page.goto('https://playwright.dev/');
 
         // See https://github.com/microsoft/playwright/issues/10219#issuecomment-1062120505 and
@@ -12,7 +12,7 @@ test.describe('Visual regression test examples', () => {
         expect(await page.screenshot()).toMatchSnapshot('homepage.png');
     });
 
-    test('Full page snapshot (with Page Object)', async ({ page }) => {
+    test('Full page snapshot (with Page Object).', async ({ page }) => {
         const mainPage = new MainPage(page);
 
         await mainPage.goTo('https://playwright.dev');
@@ -20,7 +20,7 @@ test.describe('Visual regression test examples', () => {
         expect(await page.screenshot()).toMatchSnapshot('homepage.png');
     });
 
-    test('Single element snapshot', async ({ page }) => {
+    test('Single element snapshot.', async ({ page }) => {
         await page.goto('https://playwright.dev');
 
         const pageTitle = await page.$('h1');
@@ -30,7 +30,7 @@ test.describe('Visual regression test examples', () => {
         expect(await pageTitle.screenshot()).toMatchSnapshot('page-title.png', { maxDiffPixels: 20 });
     });
 
-    test('Single element snapshot (with Page Object)', async ({ page }) => {
+    test('Single element snapshot (with Page Object).', async ({ page }) => {
         const mainPage = new MainPage(page);
 
         await mainPage.verifyPageTitle('https://playwright.dev');
@@ -38,7 +38,7 @@ test.describe('Visual regression test examples', () => {
         expect(await mainPage.pageTitle.screenshot()).toMatchSnapshot('page-title.png', { maxDiffPixels: 20 });
     });
 
-    test('Text content comparison', async ({ page }) => {
+    test('Text content comparison.', async ({ page }) => {
         await page.goto('https://playwright.dev');
 
         expect(await page.textContent('.hero__title')).toMatchSnapshot('hero.txt');
