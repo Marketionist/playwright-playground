@@ -10,7 +10,7 @@ test.describe.parallel('Account Overview', () => {
         await page.goto(`${mainPage.baseUrl}/overview.htm`);
     });
 
-    test('Verify Accounts Overview table', async ({ page }) => {
+    test('Verify Accounts Overview table.', async ({ page }) => {
         await expect(page.locator(mainPage.tableAccountsOverview)).toBeVisible();
     });
 
