@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const mainPage = require('../../page-objects/e2e-main-page.js');
 const { getCredentialsFromCookies } = require('../../utils/log-in.js');
 
-test.describe.parallel.only('Transfer Funds', () => {
+test.describe.parallel('Transfer Funds', () => {
     let credentials;
 
     test.beforeEach(async ({ page, context }) => {
@@ -16,6 +16,9 @@ test.describe.parallel.only('Transfer Funds', () => {
 
         // // Wait for 5 seconds
         // await page.waitForTimeout(5000);
+
+        // // Pause for debugging
+        // await page.pause();
 
         await expect(page.locator(mainPage.titleResult)).toBeVisible();
         await expect(page.locator(mainPage.titleResult)).toContainText(
