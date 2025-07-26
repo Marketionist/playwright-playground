@@ -2,7 +2,7 @@ const { test, expect, request } = require('@playwright/test');
 const { firefox } = require('playwright');
 const mainPage = require('../../page-objects/e2e-main-page.js');
 
-test.describe.parallel.only('Log in', () => {
+test.describe.parallel('Log in', () => {
     let browser;
     let browserContext;
     let newPage;
@@ -45,8 +45,8 @@ test.describe.parallel.only('Log in', () => {
                 origins: [],
             },
         });
-        console.log('\nCurrent browserContext cookies:', await browserContext.cookies());
-        console.log('\nCurrent browserContext storageState:', await browserContext.storageState());
+        // console.log('\nCurrent browserContext cookies:', await browserContext.cookies());
+        // console.log('\nCurrent browserContext storageState:', await browserContext.storageState());
 
         // // Clear cookies and permissions if needed
         // await browserContext.clearCookies();
