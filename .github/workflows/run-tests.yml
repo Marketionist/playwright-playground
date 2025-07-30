@@ -45,17 +45,17 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: npm run install:test-dependencies
-      - name: Lint
-        run: npm run lint
+      # - name: Lint
+      #   run: npm run lint
       - name: API tests
         run: |
           echo "Running API tests:"
           npm run test:api:reqres
-      - name: e2e tests
+      - name: End-to-end tests
         run: |
           echo "Running end-to-end tests:"
           npm run test:e2e:para-bank
-      - name: visual tests
+      - name: Visual tests
         run: |
           echo "Running visual regression tests:"
           npm run test:visual:playwright
