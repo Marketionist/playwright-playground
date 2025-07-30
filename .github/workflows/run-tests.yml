@@ -45,8 +45,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: npm run install:test-dependencies
-      # - name: Lint
-      #   run: npm run lint
+      - name: Lint
+        run: npm run lint
       - name: API tests
         run: |
           echo "Running API tests:"
