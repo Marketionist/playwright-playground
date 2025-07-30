@@ -1,0 +1,61 @@
+name: Build and Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: false
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+  # Trigger the workflow on pull request (only for the main branch)
+  # push:
+  #   branches:
+  #     - '**'
+  #   paths-ignore:
+  #     - '**/media/**'
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '**/media/**'
+
+jobs:
+  build-and-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [22.x]
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm run install:test-dependencies
+      # - name: Lint
+      #   run: npm run lint
+      - name: API tests
+        run: |
+          echo "Running API tests:"
+          npm run test:api:reqres
+      - name: End-to-end tests
+        run: |
+          echo "Running end-to-end tests:"
+          npm run test:e2e:para-bank
+      - name: Visual tests
+        run: |
+          echo "Running visual regression tests:"
+          npm run test:visual:playwright
