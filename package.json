@@ -8,7 +8,7 @@
   "scripts": {
     "install:test-dependencies-old": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true npm install && npx playwright install firefox",
     "install:test-dependencies": "npm install && npx playwright install",
-    "lint": "node ./node_modules/.bin/eslint tests/**/*.js",
+    "lint": "node ./node_modules/.bin/eslint utils/**/*.js tests/**/*.js",
     "test:e2e:chromium": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project=Chromium",
     "test:e2e:chrome": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project='Google Chrome'",
     "test:e2e:firefox": "node ./node_modules/.bin/playwright test --config=e2e.config.js --project=Firefox",

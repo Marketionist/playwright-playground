@@ -101,7 +101,7 @@
         "no-lone-blocks": "error",
         "no-loop-func": "error",
         "no-magic-numbers": ["error", {
-            "ignore": [0, -1, 1, 2, 8000, 9000, 200, 201, 204, 400, 404],
+            "ignore": [0, -1, 1, 2, 1000, 3000, 5000, 8000, 9000, 200, 201, 204, 400, 404],
             "ignoreArrayIndexes": true
         }],
         "no-multi-spaces": "error",
