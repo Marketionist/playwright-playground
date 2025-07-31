@@ -1,6 +1,6 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect, } = require('@playwright/test');
 const mainPage = require('../../page-objects/e2e-main-page.js');
-const { getCredentialsFromCookies } = require('../../utils/log-in.js');
+const { getCredentialsFromCookies, } = require('../../utils/log-in.js');
 
 test.describe('Setup Para Bank test data', () => {
     let credentials;
@@ -9,7 +9,7 @@ test.describe('Setup Para Bank test data', () => {
         credentials = await getCredentialsFromCookies(context);
     });
 
-    test('POST /createAccount - create new SAVINGS account.', async ({ context }) => {
+    test('POST /createAccount - create new SAVINGS account.', async ({ context, }) => {
         console.log('\ncredentials in setup.js:', credentials);
 
         // Get accountId
