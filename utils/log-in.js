@@ -1,5 +1,12 @@
 const authFilePath = '.auth/user.json';
 
+/**
+ * Logs in to the website using Playwright API request.
+ * @param {Object} context Playwright request context.
+ * @param {String} url URL to log in to.
+ * @param {Object} parametersObject object with properties to use as log in request parameters.
+ * @returns {Number} log in response status code.
+ */
 async function logIn (context, url, parametersObject) {
     const logInResponse = await context.request.post(
         url,
@@ -12,7 +19,7 @@ async function logIn (context, url, parametersObject) {
             //     'email': 'eve.holt@reqres.in',
             //     'password': 'cityslicka'
             // },
-        },
+        }
     );
     const logInResponseBody = await logInResponse.text();
 
@@ -24,13 +31,18 @@ async function logIn (context, url, parametersObject) {
         name: 'ta_credentials',
         value: JSON.stringify(logInResponseBody),
         url: 'https://ta-data.stijit.com',
-    }]);
+    },]);
 
     // Save cookies (context state) to the authFile
     await context.request.storageState({ path: authFilePath, });
 
     return logInResponse.status();
 }
+/**
+ * Retrieves user credentials from cookies using Playwright.
+ * @param {Object} context Playwright request context.
+ * @returns {Object} credentials object.
+ */
 async function getCredentialsFromCookies (context) {
     const storageData = await context.storageState();
     let credentials = {};
@@ -45,4 +57,4 @@ async function getCredentialsFromCookies (context) {
     return credentials;
 }
 
-module.exports = { logIn, getCredentialsFromCookies };
+module.exports = { logIn, getCredentialsFromCookies, };

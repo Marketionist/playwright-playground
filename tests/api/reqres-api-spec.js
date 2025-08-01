@@ -1,15 +1,15 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect, } = require('@playwright/test');
 
 test.describe.parallel('ReqRes API', () => {
     const baseUrl = 'https://reqres.in/api';
 
-    test('GET /users/{id} - assert valid endpoint response.', async ({ request }) => {
+    test('GET /users/{id} - assert valid endpoint response.', async ({ request, }) => {
         const response = await request.get(
             `${baseUrl}/users/4`,
             {
                 headers: {
-                    'x-api-key': 'reqres-free-v1'
-                }
+                    'x-api-key': 'reqres-free-v1',
+                },
             }
         );
         const responseBody = JSON.parse(await response.text());
@@ -17,61 +17,63 @@ test.describe.parallel('ReqRes API', () => {
         expect(response.status()).toBe(200);
     });
 
-    test('GET /users/some-wrong-url - assert invalid endpoint response.', async ({ request }) => {
+    test('GET /users/some-wrong-url - assert invalid endpoint response.', async ({ request, }) => {
         const response = await request.get(
             `${baseUrl}/users/some-wrong-url`,
             {
                 headers: {
-                    'x-api-key': 'reqres-free-v1'
-                }
+                    'x-api-key': 'reqres-free-v1',
+                },
             }
         );
 
         expect(response.status()).toBe(404);
     });
 
-    test('GET /users/{id} - assert user email.', async ({ request }) => {
+    test('GET /users/{id} - assert user email.', async ({ request, }) => {
+        const existingUserId = 4;
         const response = await request.get(
-            `${baseUrl}/users/4`,
+            `${baseUrl}/users/${existingUserId}`,
             {
                 headers: {
-                    'x-api-key': 'reqres-free-v1'
-                }
+                    'x-api-key': 'reqres-free-v1',
+                },
             }
         );
         const responseBody = JSON.parse(await response.text());
 
         expect(response.status()).toBe(200);
-        expect(responseBody.data.id).toBe(4);
+        expect(responseBody.data.id).toBe(existingUserId);
         expect(responseBody.data.email).toBe('eve.holt@reqres.in');
         expect(responseBody.data.first_name).toBeTruthy();
     });
 
-    test('POST /user - create new user.', async ({ request }) => {
+    test('POST /user - create new user.', async ({ request, }) => {
+        const userId = 999;
         const response = await request.post(`${baseUrl}/user`, {
             headers: {
-                'x-api-key': 'reqres-free-v1'
+                'x-api-key': 'reqres-free-v1',
             },
             data: {
-                id: 999
-            }
+                id: userId,
+            },
         });
         const responseBody = JSON.parse(await response.text());
 
         expect(response.status()).toBe(201);
-        expect(responseBody.id).toBe(999);
+        expect(responseBody.id).toBe(userId);
         expect(responseBody.createdAt).toBeTruthy();
     });
 
-    test('POST /login - log in with correct credentials.', async ({ request }) => {
+    test('POST /login - log in with correct credentials.', async ({ request, }) => {
         const response = await request.post(`${baseUrl}/login`, {
             headers: {
-                'x-api-key': 'reqres-free-v1'
+                'x-api-key': 'reqres-free-v1',
             },
             data: {
-                'email': 'eve.holt@reqres.in',
-                'password': 'cityslicka'
-            }
+                email: 'eve.holt@reqres.in',
+                password: 'cityslicka',
+            },
         });
         const responseBody = JSON.parse(await response.text());
 
@@ -79,14 +81,14 @@ test.describe.parallel('ReqRes API', () => {
         expect(responseBody.token).toBeTruthy();
     });
 
-    test('POST /login - log in with incorrect credentials.', async ({ request }) => {
+    test('POST /login - log in with incorrect credentials.', async ({ request, }) => {
         const response = await request.post(`${baseUrl}/login`, {
             headers: {
-                'x-api-key': 'reqres-free-v1'
+                'x-api-key': 'reqres-free-v1',
             },
             data: {
-                'email': 'eve.holt@reqres.in'
-            }
+                email: 'eve.holt@reqres.in',
+            },
         });
         const responseBody = JSON.parse(await response.text());
 
@@ -94,17 +96,18 @@ test.describe.parallel('ReqRes API', () => {
         expect(responseBody.error).toBe('Missing password');
     });
 
-    test('PUT /users/{id} - update user.', async ({ request }) => {
+    test('PUT /users/{id} - update user.', async ({ request, }) => {
         const newName = 'updated name';
         const newJob = 'updated job';
-        const response = await request.put(`${baseUrl}/users/2`, {
+        const existingUserId = 2;
+        const response = await request.put(`${baseUrl}/users/${existingUserId}`, {
             headers: {
-                'x-api-key': 'reqres-free-v1'
+                'x-api-key': 'reqres-free-v1',
             },
             data: {
-                'name': newName,
-                'job': newJob
-            }
+                name: newName,
+                job: newJob,
+            },
         });
         const responseBody = JSON.parse(await response.text());
 
@@ -114,13 +117,14 @@ test.describe.parallel('ReqRes API', () => {
         expect(responseBody.updatedAt).toBeTruthy();
     });
 
-    test('DELETE /users/{id} - update user.', async ({ request }) => {
+    test('DELETE /users/{id} - delete user.', async ({ request, }) => {
+        const existingUserId = 2;
         const response = await request.delete(
-            `${baseUrl}/users/2`,
+            `${baseUrl}/users/${existingUserId}`,
             {
                 headers: {
-                    'x-api-key': 'reqres-free-v1'
-                }
+                    'x-api-key': 'reqres-free-v1',
+                },
             }
         );
 

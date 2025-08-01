@@ -1,8 +1,6 @@
 let mainPage = {
-
-    env: process.env.ENV,
-    login: process.env.LOGIN,
-    password: process.env.PASSWORD,
+    login: process.env.LOGIN || 'Leeroy',
+    password: process.env.PASSWORD || 'Jenkins',
     baseUrl: 'https://parabank.parasoft.com/parabank',
     inputUsername: '#loginPanel [name="username"]',
     inputPassword: '#loginPanel [name="password"]',
