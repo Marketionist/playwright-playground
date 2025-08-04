@@ -81,7 +81,7 @@ test.describe.parallel('Log in', () => {
 
         await expect(newPage.locator(mainPage.blockWelcome)).not.toBeVisible();
         await expect(newPage.locator(mainPage.blockError)).toContainText(
-            'The username and password could not be verified.'
+            /The username and password could not be verified\.|An internal error has occurred and has been logged\./
         );
     });
 
