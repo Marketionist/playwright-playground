@@ -1,4 +1,4 @@
-const { defineConfig, devices } = require('@playwright/test');
+const { defineConfig, devices, } = require('@playwright/test');
 
 const config = {
     /* Timeout is shared between all tests */
@@ -11,7 +11,7 @@ const config = {
     use: {
         ...devices['Desktop Firefox'],
         headless: true,
-        viewport: { width: 1280, height: 720 },
+        viewport: { width: 1280, height: 720, },
         actionTimeout: 20000,
         ignoreHTTPSErrors: true,
         video: 'retain-on-failure',
@@ -51,33 +51,33 @@ const config = {
         /* Test against desktop browsers */
         {
             name: 'Chromium',
-            use: { ...devices['Desktop Chrome'] },
+            use: { ...devices['Desktop Chrome'], },
         },
         {
             name: 'Firefox',
-            use: { ...devices['Desktop Firefox'] },
+            use: { ...devices['Desktop Firefox'], },
         },
         {
             name: 'Webkit',
-            use: { ...devices['Desktop Safari'] },
+            use: { ...devices['Desktop Safari'], },
         },
         /* Test against mobile viewports */
         {
             name: 'Mobile Chrome',
-            use: { ...devices['Pixel 5'] },
+            use: { ...devices['Pixel 5'], },
         },
         {
             name: 'Mobile Safari',
-            use: { ...devices['iPhone 12'] },
+            use: { ...devices['iPhone 12'], },
         },
         /* Test against branded browsers */
         {
             name: 'Google Chrome',
-            use: { ...devices['Desktop Chrome'], channel: 'chrome' }, // or 'chrome-beta'
+            use: { ...devices['Desktop Chrome'], channel: 'chrome', }, // or 'chrome-beta'
         },
         {
             name: 'Microsoft Edge',
-            use: { ...devices['Desktop Edge'], channel: 'msedge' }, // or 'msedge-dev'
+            use: { ...devices['Desktop Edge'], channel: 'msedge', }, // or 'msedge-dev'
         },
         /* Test suites */
         {
