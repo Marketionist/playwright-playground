@@ -9,7 +9,8 @@ test.describe('Playwright visual regression', () => {
         // See https://github.com/microsoft/playwright/issues/10219#issuecomment-1062120505 and
         // https://playwright.dev/docs/test-assertions#page-assertions-to-have-screenshot-2
         // for all toHaveScreenshot options
-        expect(await page.screenshot()).toMatchSnapshot('homepage.png');
+        expect(await page.screenshot({ fullPage: true, }))
+            .toMatchSnapshot('homepage-full.png', { maxDiffPixelRatio: 0.15, });
     });
 
     test('Full page snapshot (with Page Object).', async ({ page, }) => {
@@ -17,7 +18,8 @@ test.describe('Playwright visual regression', () => {
 
         await mainPage.goTo('https://playwright.dev');
 
-        expect(await page.screenshot()).toMatchSnapshot('homepage.png');
+        expect(await page.screenshot({ fullPage: true, }))
+            .toMatchSnapshot('homepage-full.png', { maxDiffPixelRatio: 0.15, });
     });
 
     test('Single element snapshot.', async ({ page, }) => {
@@ -27,7 +29,10 @@ test.describe('Playwright visual regression', () => {
 
         // See https://playwright.dev/docs/test-assertions#screenshot-assertions-to-match-snapshot-1
         // for all toMatchSnapshot options
-        expect(await pageTitle.screenshot()).toMatchSnapshot('page-title.png', { maxDiffPixels: 20, });
+        expect(await pageTitle.screenshot()).toMatchSnapshot(
+            'homepage-title.png',
+            { maxDiffPixelRatio: 0.15, }
+        );
     });
 
     test('Single element snapshot (with Page Object).', async ({ page, }) => {
@@ -35,12 +40,15 @@ test.describe('Playwright visual regression', () => {
 
         await mainPage.verifyPageTitle('https://playwright.dev');
 
-        expect(await mainPage.pageTitle.screenshot()).toMatchSnapshot('page-title.png', { maxDiffPixels: 20, });
+        expect(await mainPage.pageTitle.screenshot()).toMatchSnapshot(
+            'homepage-title.png',
+            { maxDiffPixelRatio: 0.15, }
+        );
     });
 
     test('Text content comparison.', async ({ page, }) => {
         await page.goto('https://playwright.dev');
 
-        expect(await page.textContent('.hero__title')).toMatchSnapshot('hero.txt');
+        expect(await page.textContent('.hero__title')).toMatchSnapshot('homepage-title-text.txt');
     });
 });

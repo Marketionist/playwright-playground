@@ -1,9 +1,9 @@
-const { expect } = require('@playwright/test');
+const { expect, } = require('@playwright/test');
 
 exports.MainPage = class MainPage {
 
     /**
-     * @param page
+     * @param {Object} page isolated Page instance, created for each test.
      */
     constructor (page) {
         this.page = page;
@@ -19,4 +19,4 @@ exports.MainPage = class MainPage {
         await expect(this.pageTitle).toBeVisible();
     }
 
-}
+};
