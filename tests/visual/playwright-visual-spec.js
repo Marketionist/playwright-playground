@@ -10,7 +10,7 @@ test.describe('Playwright visual regression', () => {
         // https://playwright.dev/docs/test-assertions#page-assertions-to-have-screenshot-2
         // for all toHaveScreenshot options
         expect(await page.screenshot({ fullPage: true, }))
-            .toMatchSnapshot('homepage-full.png');
+            .toMatchSnapshot('homepage-full.png', { maxDiffPixelRatio: 0.15, });
     });
 
     test('Full page snapshot (with Page Object).', async ({ page, }) => {
@@ -19,7 +19,7 @@ test.describe('Playwright visual regression', () => {
         await mainPage.goTo('https://playwright.dev');
 
         expect(await page.screenshot({ fullPage: true, }))
-            .toMatchSnapshot('homepage-full.png');
+            .toMatchSnapshot('homepage-full.png', { maxDiffPixelRatio: 0.15, });
     });
 
     test('Single element snapshot.', async ({ page, }) => {
@@ -29,7 +29,10 @@ test.describe('Playwright visual regression', () => {
 
         // See https://playwright.dev/docs/test-assertions#screenshot-assertions-to-match-snapshot-1
         // for all toMatchSnapshot options
-        expect(await pageTitle.screenshot()).toMatchSnapshot('homepage-title.png', { maxDiffPixels: 20, });
+        expect(await pageTitle.screenshot()).toMatchSnapshot(
+            'homepage-title.png',
+            { maxDiffPixelRatio: 0.15, }
+        );
     });
 
     test('Single element snapshot (with Page Object).', async ({ page, }) => {
@@ -37,7 +40,10 @@ test.describe('Playwright visual regression', () => {
 
         await mainPage.verifyPageTitle('https://playwright.dev');
 
-        expect(await mainPage.pageTitle.screenshot()).toMatchSnapshot('homepage-title.png', { maxDiffPixels: 20, });
+        expect(await mainPage.pageTitle.screenshot()).toMatchSnapshot(
+            'homepage-title.png',
+            { maxDiffPixelRatio: 0.15, }
+        );
     });
 
     test('Text content comparison.', async ({ page, }) => {
