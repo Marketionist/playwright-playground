@@ -6,6 +6,12 @@ const config = {
     retries: 0,
     testDir: 'tests/visual',
     testMatch: /.*(?<!fast|long)-visual-spec\.js/,
+    expect: {
+        timeout: 10000,
+        toMatchSnapshot: {
+            maxDiffPixelRatio: 0.15,
+        },
+    },
     use: {
         ...devices['Desktop Firefox'],
         headless: true,

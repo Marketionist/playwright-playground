@@ -1,4 +1,4 @@
-const { defineConfig, devices } = require('@playwright/test');
+const { defineConfig, devices, } = require('@playwright/test');
 
 const config = {
     /* Timeout is shared between all tests */
@@ -11,11 +11,11 @@ const config = {
     use: {
         ...devices['Desktop Firefox'],
         headless: true,
-        viewport: { width: 1280, height: 720 },
+        viewport: { width: 1280, height: 720, },
         actionTimeout: 20000,
         ignoreHTTPSErrors: true,
         video: 'off',
-        screenshot: 'off'
+        screenshot: 'off',
     },
     projects: [
         {
