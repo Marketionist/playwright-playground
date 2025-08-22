@@ -6,7 +6,7 @@
     "node": ">=14.17.x"
   },
   "scripts": {
-    "lint": "node ./node_modules/.bin/eslint utils/**/*.js tests/**/*.js",
+    "lint": "node ./node_modules/.bin/eslint *config.js utils/**/*.js page-objects/**/*.js tests/**/*.js",
     "prepare": "husky",
     "install:test-dependencies-old": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true npm install && npx playwright install firefox",
     "install:test-dependencies": "npm install && npx playwright install",
